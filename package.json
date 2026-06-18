@@ -8,6 +8,9 @@
     "react-dom": "^19.0.0",
     "react-scripts": "5.0.1"
   },
+  "devDependencies": {
+    "typescript": "4.9.5"
+  },
   "scripts": {
     "start": "PORT=3001 react-scripts start",
     "build": "react-scripts build",
