@@ -60,7 +60,7 @@ export function FinalCTA({ onLogin }) {
   );
 }
 
-export function Footer({ onLogin, scrollTo }) {
+export function Footer({ scrollTo }) {
   return (
     <footer className="eh-footer">
       <div className="eh-nav-logo" style={{ cursor: 'pointer' }} onClick={() => scrollTo('top')}>
@@ -71,7 +71,6 @@ export function Footer({ onLogin, scrollTo }) {
         <button className="flink" onClick={() => scrollTo('automation')}>How it works</button>
         <button className="flink" onClick={() => scrollTo('command')}>Command Center</button>
         <button className="flink" onClick={() => scrollTo('impact')}>Impact</button>
-        <button className="flink" onClick={onLogin}>Log in</button>
       </div>
       <div className="copy">© {new Date().getFullYear()} EduFlow · Layaa AI</div>
     </footer>

@@ -56,7 +56,7 @@ export default function Homepage({ onLogin }) {
       <StudyBackground />
       {!loaded && <Loader onDone={handleDone} />}
       <div className="eh-progress" aria-hidden><div ref={progressRef} className="eh-progress-fill" /></div>
-      <Nav onLogin={onLogin} scrollTo={scrollTo} />
+      <Nav scrollTo={scrollTo} />
       <Hero onLogin={onLogin} scrollTo={scrollTo} />
       <LiveTicker />
       <Problem />
@@ -71,7 +71,7 @@ export default function Homepage({ onLogin }) {
       <Stats />
       <Testimonials />
       <FinalCTA onLogin={onLogin} />
-      <Footer onLogin={onLogin} scrollTo={scrollTo} />
+      <Footer scrollTo={scrollTo} />
     </div>
   );
 }

@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Menu, X } from 'lucide-react';
-import { MagneticButton } from './primitives';
 
 const LINKS = [
   { label: 'Platform', target: 'features' },
@@ -9,7 +8,7 @@ const LINKS = [
   { label: 'Impact', target: 'impact' },
 ];
 
-export default function Nav({ onLogin, scrollTo }) {
+export default function Nav({ scrollTo }) {
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -46,9 +45,6 @@ export default function Nav({ onLogin, scrollTo }) {
               {l.label}
             </button>
           ))}
-          <MagneticButton variant="primary" strength={6} onClick={onLogin} style={{ padding: '11px 22px', fontSize: 14 }}>
-            Log in
-          </MagneticButton>
         </div>
         <button
           className="eh-nav-burger"
@@ -72,13 +68,6 @@ export default function Nav({ onLogin, scrollTo }) {
             {l.label}
           </button>
         ))}
-        <button
-          className="eh-btn eh-btn-primary eh-mobile-cta"
-          style={{ transitionDelay: `${menuOpen ? 80 + LINKS.length * 50 : 0}ms` }}
-          onClick={() => { setMenuOpen(false); onLogin(); }}
-        >
-          Log in
-        </button>
       </div>
     </>
   );
