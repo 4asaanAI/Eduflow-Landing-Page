@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Reveal, TickerCounter, MagneticButton, CornerFrame } from './primitives';
+import Mascot from './Mascot';
 
 const STATS = [
   { to: 40, suffix: '+', cap: 'Hrs saved / teacher / term', a11y: '40+ hours saved per teacher per term' },
@@ -12,9 +13,11 @@ export function Stats() {
   return (
     <section className="eh-section" id="impact" style={{ paddingTop: 60, paddingBottom: 60 }}>
       <div className="eh-wrap">
-        <Reveal as="span" className="eh-eyebrow" style={{ display: 'block', textAlign: 'center', marginBottom: 36 }}>
-          The measurable difference
-        </Reveal>
+        <div style={{ textAlign: 'center', marginBottom: 36 }}>
+          <Reveal as="span" className="eh-eyebrow" style={{ display: 'inline-flex' }}>
+            The measurable difference
+          </Reveal>
+        </div>
         <div className="eh-stats">
           {STATS.map((s, i) => (
             <Reveal key={i} variant="scale-in" stagger={90} index={i}>
@@ -42,9 +45,13 @@ export function FinalCTA({ onLogin }) {
   return (
     <section className="eh-section eh-final" style={{ paddingTop: 120, paddingBottom: 120 }}>
       <div className="eh-grid-bg" aria-hidden />
+      <div className="eh-blob eh-blob-orange" style={{ top: '10%', left: '50%', transform: 'translateX(-50%)' }} aria-hidden />
       <div className="eh-wrap">
-        <Reveal as="h2" className="eh-h1" variant="clip-wipe" style={{ maxWidth: 900, margin: '0 auto' }}>
-          Let your school run itself.
+        <Reveal style={{ display: 'flex', justifyContent: 'center', marginBottom: 18 }}>
+          <Mascot size={150} />
+        </Reveal>
+        <Reveal as="h2" className="eh-h1" style={{ maxWidth: 900, margin: '0 auto' }}>
+          Let your school <span className="eh-pop-orange">run itself.</span>
         </Reveal>
         <Reveal as="p" className="eh-lead" delay={120} style={{ maxWidth: 520, margin: '24px auto 0' }}>
           Join the schools that traded paperwork for an AI operations center that never clocks out.
@@ -63,16 +70,15 @@ export function FinalCTA({ onLogin }) {
 export function Footer({ scrollTo }) {
   return (
     <footer className="eh-footer">
-      <div className="eh-nav-logo" style={{ cursor: 'pointer' }} onClick={() => scrollTo('top')}>
-        <img src="/eduflow-logo.png" alt="EduFlow" style={{ height: 28 }} />
-        <span style={{ fontWeight: 600, fontSize: 16 }}>EduFlow</span>
+      <div className="eh-footer-brand">
+        <img src="/Layaa_Logo.png" alt="Layaa AI" className="eh-footer-layaa" />
+        <span className="copy">© {new Date().getFullYear()} Layaa AI · EduFlow</span>
       </div>
       <div className="flinks">
         <button className="flink" onClick={() => scrollTo('automation')}>How it works</button>
         <button className="flink" onClick={() => scrollTo('command')}>Command Center</button>
         <button className="flink" onClick={() => scrollTo('impact')}>Impact</button>
       </div>
-      <div className="copy">© {new Date().getFullYear()} EduFlow · Layaa AI</div>
     </footer>
   );
 }

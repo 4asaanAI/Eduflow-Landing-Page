@@ -22,7 +22,7 @@ export default function Homepage({ onLogin }) {
   });
 
   useEffect(() => {
-    document.body.style.background = '#0b0b0c';
+    document.body.style.background = '#0e1525';
     return () => { document.body.style.background = ''; };
   }, []);
 

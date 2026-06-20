@@ -38,6 +38,7 @@ export default function Nav({ scrollTo }) {
       <nav className={`eh-nav ${scrolled || menuOpen ? 'scrolled' : ''} ${hidden ? 'hidden' : ''}`}>
         <div className="eh-nav-logo" onClick={() => go('top')}>
           <img src="/eduflow-logo.png" alt="EduFlow" />
+          <span className="eh-nav-byline">by Layaa <span className="ai">AI</span></span>
         </div>
         <div className="eh-nav-links">
           {LINKS.map((l) => (

@@ -1,21 +1,25 @@
 import React, { useEffect, useRef, useState } from 'react';
 import {
-  ClipboardCheck, Wallet, GraduationCap, MessageSquare, Bus, FileBarChart,
-  ShieldCheck, Zap, Quote,
+  ShieldCheck, Zap, Star, BadgeCheck,
+  GraduationCap, BookOpen, Building2, LineChart,
+  Brain, HelpCircle, Compass, PenTool, Target,
+  FileText, BarChart3, FilePlus, Award, IdCard,
+  Megaphone, ScrollText, Bell, Trophy, Bus,
 } from 'lucide-react';
 import { Reveal, SpotlightCard, CornerFrame, StatusDot, useInView } from './primitives';
 
 /* ---------------- Live ticker marquee (ambient "system never sleeps") ---------------- */
 const TICKER = [
-  'ATTENDANCE LOCKED · 9A · 32/32',
-  'FEE RECEIPT SENT · ₹3,800',
-  'REPORT CARD GENERATED · GRADE 6',
-  '3 PARENTS NOTIFIED · 0.4s',
-  'EXAM MARKS SYNCED · SCIENCE',
-  'BUS ROUTE 3 · ON TIME',
-  'AI FLAGGED · 2 LOW-ATTENDANCE CLASSES',
-  'ANNOUNCEMENT PUBLISHED · ALL BRANCHES',
-  'DEFAULTER REMINDER QUEUED · 14',
+  'AI TUTOR · 312 DOUBTS SOLVED TODAY',
+  'TIMETABLE GENERATED · GRADE 9 · 0 CLASHES',
+  'QUESTION PAPER CREATED · SCIENCE · CLASS 8',
+  'CAREER GUIDANCE · 18 STUDENTS MATCHED',
+  'BONAFIDE CERTIFICATE ISSUED · INSTANT',
+  'LESSON PLAN DRAFTED · CHAPTER 6',
+  'ADMISSION LEAD CONVERTED · +1 SEAT',
+  'SUBSTITUTION ARRANGED · PERIOD 4',
+  'WORKSHEET BUILT · 25 PRACTICE Qs',
+  'ID CARDS PRINTED · NEW BATCH · 42',
 ];
 
 export function LiveTicker() {
@@ -33,14 +37,50 @@ export function LiveTicker() {
   );
 }
 
-/* ---------------- Features grid ---------------- */
-const FEATURES = [
-  { icon: ClipboardCheck, title: 'Attendance', desc: 'Tap, biometric or RFID — validated, locked and analysed the instant it\'s captured.', status: 'Auto-synced', proc: true },
-  { icon: Wallet, title: 'Fees & Accounts', desc: 'Collection, receipts, reminders and reconciliation across six payment channels.', status: 'Live', proc: false },
-  { icon: GraduationCap, title: 'Exams & Reports', desc: 'Marks flow straight into formatted report cards and risk analytics — in seconds.', status: '3× faster', proc: true },
-  { icon: MessageSquare, title: 'Communication', desc: 'SMS, WhatsApp and email to every parent, with delivery confirmation — not guesswork.', status: '98% delivery', proc: false },
-  { icon: Bus, title: 'Transport', desc: 'Routes, roll-calls and live status for every bus, every trip, every student.', status: 'Tracked', proc: false },
-  { icon: FileBarChart, title: 'Insights', desc: 'Attendance trends, fee health and academic risk surfaced before they become problems.', status: 'Continuous', proc: true },
+/* ---------------- Role-based toolkit showcase ----------------
+   One card per persona — each lists DIFFERENT tools so the page never
+   repeats the same four features. 40+ tools across the whole school. */
+const ROLES = [
+  {
+    role: 'For Students', icon: GraduationCap, accent: '#a78bfa', count: '12 tools',
+    tools: [
+      { icon: Brain, name: 'AI Tutor' },
+      { icon: HelpCircle, name: 'Doubt Solver' },
+      { icon: Compass, name: 'Career Guidance' },
+      { icon: PenTool, name: 'Practice Tests' },
+      { icon: Target, name: 'Study Planner' },
+    ],
+  },
+  {
+    role: 'For Teachers', icon: BookOpen, accent: '#2b8ff0', count: '14 tools',
+    tools: [
+      { icon: FileText, name: 'Assignments' },
+      { icon: PenTool, name: 'Question Papers' },
+      { icon: BookOpen, name: 'Lesson Plans' },
+      { icon: FilePlus, name: 'Worksheets' },
+      { icon: BarChart3, name: 'Class Analytics' },
+    ],
+  },
+  {
+    role: 'For Admin & Office', icon: Building2, accent: '#34d399', count: '20+ tools',
+    tools: [
+      { icon: Target, name: 'Admissions Pipeline' },
+      { icon: Award, name: 'Certificates' },
+      { icon: IdCard, name: 'ID Cards' },
+      { icon: Bus, name: 'Transport' },
+      { icon: Megaphone, name: 'Circulars' },
+    ],
+  },
+  {
+    role: 'For Owners & Leadership', icon: LineChart, accent: '#f2811d', count: 'Full view',
+    tools: [
+      { icon: BarChart3, name: 'Live Insights' },
+      { icon: FileText, name: 'Auto Reports' },
+      { icon: Bell, name: 'Fee Defaulters' },
+      { icon: Trophy, name: 'School Activities' },
+      { icon: ScrollText, name: 'Audit Log' },
+    ],
+  },
 ];
 
 export function Features() {
@@ -49,27 +89,38 @@ export function Features() {
       <div className="eh-grid-bg" aria-hidden />
       <div className="eh-wrap">
         <Reveal as="span" className="eh-eyebrow" style={{ display: 'inline-flex', marginBottom: 16 }}>
-          <i className="eh-eyebrow-idx">01</i> One platform · every operation
+          <i className="eh-eyebrow-idx">01</i> Built for everyone in the building
         </Reveal>
         <Reveal as="h2" className="eh-h2" style={{ maxWidth: 760 }}>
-          Everything a school does, running itself.
+          A toolkit for <span className="eh-pop-orange">every role.</span>
         </Reveal>
-        <Reveal as="p" className="eh-lead" delay={100} style={{ maxWidth: 540, marginTop: 16 }}>
-          No bolt-on modules, no integrations to babysit. One AI core that operates the entire school day.
+        <Reveal as="p" className="eh-lead" delay={100} style={{ maxWidth: 560, marginTop: 16 }}>
+          Students, teachers, the front office and leadership each get their own AI tools —
+          40+ of them — all on one platform, all talking to each other.
         </Reveal>
 
-        <div className="eh-feat-grid">
-          {FEATURES.map((f, i) => {
-            const Icon = f.icon;
+        <div className="eh-roles">
+          {ROLES.map((r, i) => {
+            const Icon = r.icon;
             return (
-              <Reveal key={f.title} variant="scale-in" stagger={70} index={i}>
-                <SpotlightCard className={`eh-feat ${f.proc ? 'proc' : ''}`}>
-                  <div className="eh-feat-top">
-                    <span className="eh-feat-ico"><Icon size={20} /></span>
-                    <StatusDot done label={f.status} />
+              <Reveal key={r.role} variant="scale-in" stagger={80} index={i}>
+                <SpotlightCard className="eh-role" style={{ '--role-accent': r.accent }}>
+                  <div className="eh-role-top">
+                    <span className="eh-role-ico"><Icon size={22} /></span>
+                    <span className="eh-role-count">{r.count}</span>
                   </div>
-                  <h3 className="eh-feat-title">{f.title}</h3>
-                  <p className="eh-feat-desc">{f.desc}</p>
+                  <h3 className="eh-role-title">{r.role}</h3>
+                  <ul className="eh-role-tools">
+                    {r.tools.map((t) => {
+                      const TIcon = t.icon;
+                      return (
+                        <li key={t.name} className="eh-role-tool">
+                          <TIcon size={15} /> {t.name}
+                        </li>
+                      );
+                    })}
+                    <li className="eh-role-tool more">+ more</li>
+                  </ul>
                 </SpotlightCard>
               </Reveal>
             );
@@ -94,18 +145,20 @@ const SATS = [
 ];
 
 export function DigitalTwin() {
-  const [ref, inView] = useInView({ once: true, threshold: 0.3 });
+  // once:false → nodes re-light and pulses restart each time it re-enters view
+  const [ref, inView] = useInView({ once: false, threshold: 0.3 });
   const [lit, setLit] = useState({});
   const [pulses, setPulses] = useState([]);
   const pulsesRef = useRef([]);
   const alive = useRef(false);
 
   useEffect(() => {
-    if (!inView) return;
+    if (!inView) { setLit({}); setPulses([]); pulsesRef.current = []; return; } // reset on leave
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    // sequential light-up
-    SATS.forEach((s, i) => setTimeout(() => setLit((p) => ({ ...p, [s.id]: true })), 180 + i * 160));
-    if (reduce) return;
+    // sequential light-up (tracked so we can cancel if the user scrolls away mid-sequence)
+    setLit({});
+    const timeouts = SATS.map((s, i) => setTimeout(() => setLit((p) => ({ ...p, [s.id]: true })), 180 + i * 160));
+    if (reduce) return () => timeouts.forEach(clearTimeout);
 
     alive.current = true;
     let raf, spawnTimer;
@@ -131,7 +184,7 @@ export function DigitalTwin() {
       raf = requestAnimationFrame(frame);
     };
     raf = requestAnimationFrame(frame);
-    return () => { alive.current = false; cancelAnimationFrame(raf); clearInterval(spawnTimer); pulsesRef.current = []; };
+    return () => { timeouts.forEach(clearTimeout); alive.current = false; cancelAnimationFrame(raf); clearInterval(spawnTimer); pulsesRef.current = []; };
   }, [inView]);
 
   return (
@@ -160,7 +213,7 @@ export function DigitalTwin() {
               ))}
               {SATS.map((s) => (
                 <g key={s.id} className={`eh-twin-node ${lit[s.id] ? 'lit' : ''}`}>
-                  <circle cx={s.x} cy={s.y} r="34" className="eh-twin-circle" />
+                  <circle cx={s.x} cy={s.y} r="42" className="eh-twin-circle" />
                   <text x={s.x} y={s.y + 3} textAnchor="middle" className="eh-twin-label">{s.label}</text>
                 </g>
               ))}
@@ -181,29 +234,58 @@ export function DigitalTwin() {
 
 /* ---------------- Testimonials ---------------- */
 const QUOTES = [
-  { q: 'We shut down three spreadsheets and a WhatsApp group in the first week. The staff actually trust it.', name: 'Priya Sharma', role: 'Principal · The Aaryans', i: 'PS' },
-  { q: 'Report cards used to eat my weekends. Now they\'re done before I\'ve finished my chai.', name: 'Rajesh Kumar', role: 'Class Teacher · 9A', i: 'RK' },
-  { q: 'Fee reconciliation that took two days closes itself by evening. I just review and approve.', name: 'Meena Gupta', role: 'Accountant', i: 'MG' },
+  {
+    q: 'We shut down three spreadsheets and a WhatsApp group in the very first week. What surprised me most is that the staff actually trust it — they stopped double-checking everything by hand.',
+    name: 'Aman Litt', role: 'Principal',
+    i: 'AL', av: '#2b8ff0',
+  },
+  {
+    q: 'Report cards used to eat my entire weekend, every single term. Now they\'re generated and shared before I\'ve finished my morning chai. I genuinely got my Sundays back.',
+    name: 'Rajesh Kumar', role: 'Class Teacher',
+    i: 'RK', av: '#f2811d',
+  },
+  {
+    q: 'Fee reconciliation that took my team two full days now closes itself by evening. I just open the dashboard, review what the AI flagged, and approve. The numbers always match.',
+    name: 'Meena Gupta', role: 'Accounts Head',
+    i: 'MG', av: '#46d17a',
+  },
 ];
+
+function Stars() {
+  return (
+    <div className="eh-quote-stars" aria-label="Rated 5 out of 5">
+      {[0, 1, 2, 3, 4].map((s) => (
+        <Star key={s} size={16} fill="currentColor" strokeWidth={0} />
+      ))}
+    </div>
+  );
+}
 
 export function Testimonials() {
   return (
     <section className="eh-section" id="voices">
       <div className="eh-wrap">
-        <Reveal as="span" className="eh-eyebrow" style={{ display: 'block', marginBottom: 16 }}>
+        <Reveal as="span" className="eh-eyebrow" style={{ display: 'inline-flex', marginBottom: 16 }}>
           From the staff room
         </Reveal>
-        <Reveal as="h2" className="eh-h2" style={{ maxWidth: 640 }}>
-          The people who stopped doing it by hand.
+        <Reveal as="h2" className="eh-h2" style={{ maxWidth: 680 }}>
+          The people who stopped doing it <span className="eh-pop-orange">by hand.</span>
         </Reveal>
+        <Reveal as="p" className="eh-lead" delay={100} style={{ maxWidth: 540, marginTop: 16 }}>
+          Real educators, real schools — here's what changed once EduFlow took the busywork off their desks.
+        </Reveal>
+
         <div className="eh-quotes">
           {QUOTES.map((qt, i) => (
             <Reveal key={i} variant="scale-in" stagger={90} index={i}>
               <SpotlightCard className="eh-quote">
-                <Quote className="eh-quote-mark" size={26} />
+                <div className="eh-quote-head">
+                  <Stars />
+                  <span className="eh-quote-verified"><BadgeCheck size={15} /> Verified</span>
+                </div>
                 <p className="eh-quote-text">{qt.q}</p>
                 <div className="eh-quote-by">
-                  <span className="eh-quote-av">{qt.i}</span>
+                  <span className="eh-quote-av" style={{ background: qt.av }}>{qt.i}</span>
                   <div>
                     <div className="eh-quote-name">{qt.name}</div>
                     <div className="eh-quote-role">{qt.role}</div>

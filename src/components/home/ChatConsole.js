@@ -1,26 +1,27 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Reveal, CornerFrame, useInView } from './primitives';
+import Mascot from './Mascot';
 
 const SCRIPT = [
   {
-    prompt: 'Show fee defaulters',
-    response: 'Found 3 students with overdue fees for June. Reminders queued across SMS + WhatsApp.',
-    result: { head: ['Student', 'Class', 'Due'], rows: [['Rahul Singh', '9A', '₹4,200'], ['Sneha Kumari', '9A', '₹3,800'], ['Sohail Khan', '9B', '₹4,200']] },
+    prompt: 'Make a Class 8 science worksheet',
+    response: 'Here is a 25-question worksheet on "Force & Pressure" — mixed difficulty, with an answer key.',
+    result: { head: ['Section', 'Questions', 'Type'], rows: [['Warm-up', '8', 'MCQ'], ['Core', '12', 'Short answer'], ['Challenge', '5', 'Numerical']] },
   },
   {
-    prompt: 'Generate report cards',
-    response: 'Compiled marks for Grade 6 across 8 subjects. 41 report cards generated and ready to share.',
-    result: { head: ['Batch', 'Status', 'Count'], rows: [['Grade 6 · A', 'Ready', '23'], ['Grade 6 · B', 'Ready', '18'], ['Delivery', 'Queued', 'Parents']] },
+    prompt: 'Who are my hottest admission leads?',
+    response: 'Here are your 23 open enquiries ranked by intent. The top 3 are most likely to convert this week — follow up today.',
+    result: { head: ['Parent', 'Grade', 'Score'], rows: [['Mr. Verma', 'Grade 4', '92%'], ['Mrs. Iyer', 'Grade 1', '88%'], ['Mr. Khan', 'Grade 7', '81%']] },
   },
   {
-    prompt: 'Notify absentees',
-    response: '8 students marked absent today. Parents notified instantly with delivery confirmation.',
-    result: { head: ['Channel', 'Sent', 'Delivered'], rows: [['SMS', '8', '8'], ['WhatsApp', '8', '7'], ['Email', '8', '8']] },
+    prompt: 'Draft a clash-free timetable for Grade 9',
+    response: 'Here is a full weekly timetable across 6 sections — balanced load, zero teacher clashes.',
+    result: { head: ['Day', 'Periods', 'Clashes'], rows: [['Mon–Fri', '8 / day', '0'], ['Teachers', '14', 'Balanced'], ['Labs', '3', 'Slotted']] },
   },
   {
-    prompt: 'Create attendance summary',
-    response: 'Today: 412 of 420 present (98.1%). Two classes below threshold flagged for follow-up.',
-    result: { head: ['Metric', 'Value', 'Trend'], rows: [['Present', '412 / 420', '▲ 1.2%'], ['Late', '6', '▼ 0.4%'], ['Flagged', '2 classes', 'Action'] ] },
+    prompt: 'Suggest career paths for Aarav',
+    response: 'Based on grades, interests and aptitude, here are three strong directions with next steps.',
+    result: { head: ['Path', 'Fit', 'Next step'], rows: [['Data Science', 'High', 'Try Python'], ['Architecture', 'Medium', 'Design club'], ['Biotech', 'Medium', 'Science fair']] },
   },
 ];
 
@@ -89,7 +90,8 @@ export default function ChatConsole() {
           A conversation, not a console.
         </Reveal>
 
-        <Reveal style={{ marginTop: 0 }}>
+        <Reveal style={{ marginTop: 0, position: 'relative' }}>
+          <div className="eh-chat-mascot" aria-hidden><Mascot size={104} mood="wink" /></div>
           <CornerFrame style={{ borderRadius: 18 }}>
             <div className="eh-chat">
               <div className="eh-chat-head">

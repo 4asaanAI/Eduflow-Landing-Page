@@ -34,11 +34,11 @@ function Module({ span, title, icon: Icon, status, children }) {
 }
 
 const ANN = [
-  'PTM scheduled · Grade 8 · Saturday 10 AM',
-  'Fee receipt sent · Sneha Kumari · ₹3,800',
-  'Holiday notice published · all branches',
-  'Bus route 3 · departed on time',
-  'Exam datesheet released · Grade 9',
+  'Timetable published · Grade 9 · 0 clashes',
+  'Career guidance session · Grade 11 · Saturday',
+  'New admission confirmed · Grade 4 · seat held',
+  'Worksheet shared · Class 8 · Science',
+  'Maintenance request closed · Science Lab 2',
 ];
 
 export default function CommandCenter() {
@@ -120,7 +120,7 @@ export default function CommandCenter() {
 
             <Module span="span-5" title="AI Suggestions" icon={Sparkles} status="Ready">
               <div className="eh-suggest">
-                3 fee defaulters in 9A haven't responded to reminders. Recommend a direct call from reception today.
+                6 admission leads went cold this week — 3 are high-intent. Recommend a reminder call from reception today.
               </div>
               <button
                 className={`eh-btn ${applied ? 'eh-btn-secondary' : 'eh-btn-primary'} eh-apply`}

@@ -29,7 +29,7 @@ export function useInView(options = {}) {
 }
 
 /* Reveal — fade-up / scale-in / clip-wipe entrance on scroll */
-export function Reveal({ as: Tag = 'div', variant = 'fade-up', delay = 0, stagger, index = 0, className = '', children, once = true, style, ...rest }) {
+export function Reveal({ as: Tag = 'div', variant = 'fade-up', delay = 0, stagger, index = 0, className = '', children, once = false, style, ...rest }) {
   const [ref, inView] = useInView({ once });
   const variantClass = variant === 'scale-in' ? 'scale-in' : variant === 'clip-wipe' ? 'clip-wipe' : '';
   const totalDelay = (stagger ? index * stagger : 0) + delay;
@@ -129,12 +129,14 @@ export function StatusDot({ done = false, label, success = false }) {
 
 /* TickerCounter — eased count-up on view; static text backs it for a11y */
 export function TickerCounter({ to, from = 0, duration = 1300, format = (n) => Math.round(n).toLocaleString(), prefix = '', suffix = '' }) {
-  const [ref, inView] = useInView({ once: true, threshold: 0.4 });
+  // once:false → the count-up replays every time it scrolls back into view
+  const [ref, inView] = useInView({ once: false, threshold: 0.4 });
   const [val, setVal] = useState(from);
   const started = useRef(false);
 
   useEffect(() => {
-    if (!inView || started.current) return;
+    if (!inView) { started.current = false; setVal(from); return; } // reset on leave
+    if (started.current) return;
     started.current = true;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { setVal(to); return; }
     let raf;
