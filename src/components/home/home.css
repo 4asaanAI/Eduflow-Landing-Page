@@ -1387,6 +1387,46 @@
   .eh-chat-mascot .eh-mascot { width: 72px !important; }
 }
 
+/* ============================================================
+   Small-screen refinements — the absolute-positioned diagrams use
+   fixed px/percent offsets that bunch up or clip on phones. These
+   scale them down so they stay whole and legible. Everything else
+   is already fluid via clamp() + the breakpoints above.
+   ============================================================ */
+
+/* "AI takes over" orbit: cards sit at fixed px radii (~235px) from the
+   centre, so on narrow viewports they clip. Scale the whole stage so the
+   orbit fits, and tighten the reserved height to kill the leftover gap. */
+@media (max-width: 680px) {
+  .eh-absorb { transform: scale(0.82); transform-origin: center; height: clamp(320px, 46vh, 460px); }
+}
+@media (max-width: 480px) {
+  .eh-absorb { transform: scale(0.64); height: clamp(280px, 42vh, 400px); }
+  .eh-absorb-card { font-size: 11px; padding: 7px 10px; }
+}
+
+/* "Chaos" task pile: overlapping is intentional, but on the smallest
+   phones the 70vw cards swallow the whole frame. Trim them so several
+   stay readable at once and the section keeps its busy-but-legible feel. */
+@media (max-width: 480px) {
+  .eh-chaos { height: clamp(340px, 60vh, 460px); }
+  .eh-task { width: min(220px, 76vw); padding: 11px 13px; }
+  .eh-task-title { font-size: 12.5px; }
+  .eh-task-meta { font-size: 10.5px; }
+}
+
+/* Hero ops panel: drop the 3D parallax perspective on touch so a stray
+   tilt can't push the floating labels/flow out of the clipped frame. */
+@media (hover: none) {
+  .eh-ops { transform: none !important; }
+}
+
+/* Very large displays: keep line-length comfortable — the 1600px wrap
+   already caps width, this just centres hero copy generously. */
+@media (min-width: 1800px) {
+  .eh-hero-copy { max-width: 1180px; }
+}
+
 /* ---------------- reduced motion ---------------- */
 @media (prefers-reduced-motion: reduce) {
   .eduflow-home *,
